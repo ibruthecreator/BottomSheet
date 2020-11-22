@@ -11,6 +11,10 @@ protocol Item {
     var title: String { get }
 }
 
+enum ExampleType {
+    case content, list
+}
+
 final class ViewModel {
     
     struct SheetSizingItem: Item {
@@ -38,5 +42,17 @@ final class ViewModel {
     ]
     
     var selectedHandleStyle: BottomSheetView.HandleStyle = .none
+    
+    struct ExampleItem: Item {
+        let exampleType: ExampleType
+        let title: String
+    }
+    
+    let exampleTypesItems: [ExampleItem] = [
+        .init(exampleType: .content, title: "Content"),
+        .init(exampleType: .list, title: "List")
+    ]
+    
+    var selectedExampleType: ExampleType = .content
     
 }

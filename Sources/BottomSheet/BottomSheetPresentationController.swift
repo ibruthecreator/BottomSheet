@@ -35,19 +35,8 @@ public final class BottomSheetPresentationController: UIPresentationController {
         let fittingSize = CGSize(width: targetWidth, height: UIView.layoutFittingCompressedSize.height)
         var targetHeight = presentedView.systemLayoutSizeFitting(fittingSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .defaultLow).height
         
-        // Handle cases when the containerView does not use auto layout
-        if let tableView = presentedView.subviews.first(where: { $0 is UITableView }) as? UITableView {
-            targetHeight += tableView.contentSize.height
-        }
-        if let tableView = presentedView as? UITableView {
-            targetHeight += tableView.contentSize.height
-        }
-        if let collectionView = presentedView.subviews.first(where: { $0 is UICollectionView }) as? UICollectionView {
-            targetHeight += collectionView.contentSize.height
-        }
-        if let collectionView = presentedView as? UICollectionView {
-            targetHeight += collectionView.contentSize.height
-        }
+        // Get content size of scrollable content
+        targetHeight += getContentSize(of: presentedView).height
         
         // Add the bottom safe area inset
         targetHeight += containerView.safeAreaInsets.bottom
@@ -60,6 +49,8 @@ public final class BottomSheetPresentationController: UIPresentationController {
         if frame.height > toSafeAreaTopFrame.height {
             return toSafeAreaTopFrame
         }
+        
+        presentedView.scrollView?.isScrollEnabled = false
         return frame
     }
     
@@ -107,8 +98,6 @@ public final class BottomSheetPresentationController: UIPresentationController {
         
         guard let presentedView = presentedView else { return }
         
-        presentedView.layer.masksToBounds = true
-        presentedView.roundCorners(corners: [.topLeft, .topRight], radius: 36)
         presentedView.isUserInteractionEnabled = true
         
         if !(presentedView.gestureRecognizers?.contains(panGesture) ?? false) {
@@ -122,9 +111,10 @@ public final class BottomSheetPresentationController: UIPresentationController {
         guard let presenterView = containerView else { return }
         guard let presentedView = presentedView else { return }
         
-        presentedView.frame = frameOfPresentedViewInContainerView
-        
-        let gap = presenterView.bounds.height - frameOfPresentedViewInContainerView.height
+        let newFrame = frameOfPresentedViewInContainerView
+        presentedView.frame = newFrame
+                
+        let gap = presenterView.bounds.height - newFrame.height
         presentedView.center = CGPoint(x: presenterView.center.x, y: presenterView.center.y + gap / 2)
         presentedViewCenter = presentedView.center
         
@@ -148,6 +138,10 @@ public final class BottomSheetPresentationController: UIPresentationController {
         }, completion: { [weak self] context in
             self?.dimmingView.removeFromSuperview()
         })
+    }
+    
+    private func getContentSize(of view: UIView) -> CGSize {
+        view.tableView?.contentSize ?? view.scrollView?.contentSize ?? .zero
     }
             
     @objc private func dismiss() {
@@ -210,6 +204,18 @@ public final class BottomSheetPresentationController: UIPresentationController {
     
     private func normalize<T: FloatingPoint>(value: T, min: T, max: T) -> T {
         (value - min) / (max - min)
+    }
+    
+}
+
+private extension UIView {
+    
+    var tableView: UITableView? {
+        self as? UITableView ?? subviews.first(where: { $0 is UITableView }) as? UITableView
+    }
+    
+    var scrollView: UIScrollView? {
+        self as? UIScrollView ?? subviews.first(where: { $0 is UIScrollView }) as? UIScrollView
     }
     
 }

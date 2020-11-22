@@ -65,7 +65,15 @@ public class BottomSheetViewController: UIViewController {
         view = bottomSheetView
         bottomSheetView.accessibilityIdentifier = "Bottom Sheet"
     }
-        
+    
+    /// Adds a child controller as the content of the BottomSheet
+    /// - Parameter childController: The controller to add as content
+    public func addChildContent(_ childController: UIViewController) {
+        contentView = childController.view
+        addChild(childController)
+        childController.didMove(toParent: self)
+    }
+    
 }
 #endif
 

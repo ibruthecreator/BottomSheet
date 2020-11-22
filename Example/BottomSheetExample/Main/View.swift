@@ -8,6 +8,10 @@
 import UIKit
 
 final class View: UIView {
+    
+    lazy var pickers: [UISegmentedControl] = {
+        [sheetSizingStylePicker, handleStylePicker, exampleTypePicker]
+    }()
         
     lazy var sheetSizingStylePicker: UISegmentedControl = {
         let control = UISegmentedControl()
@@ -15,6 +19,11 @@ final class View: UIView {
     }()
     
     lazy var handleStylePicker: UISegmentedControl = {
+        let control = UISegmentedControl()
+        return control
+    }()
+    
+    lazy var exampleTypePicker: UISegmentedControl = {
         let control = UISegmentedControl()
         return control
     }()
@@ -27,7 +36,7 @@ final class View: UIView {
     }()
     
     lazy var contentStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [sheetSizingStylePicker, handleStylePicker, button])
+        let stack = UIStackView(arrangedSubviews: pickers + [button])
         stack.axis = .vertical
         stack.spacing = 16
         return stack

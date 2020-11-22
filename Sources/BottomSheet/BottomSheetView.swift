@@ -164,6 +164,7 @@ public final class BottomSheetView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
+        roundCorners(corners: [.topLeft, .topRight], radius: cornerRadius)
     }
             
     public override func safeAreaInsetsDidChange() {

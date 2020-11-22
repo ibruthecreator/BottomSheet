@@ -17,6 +17,7 @@
 		9B42EB9B256A7FFE00C7448D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42EB9A256A7FFE00C7448D /* View.swift */; };
 		9B42EB9F256A801A00C7448D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42EB9E256A801A00C7448D /* ViewModel.swift */; };
 		9B42EBA5256A803F00C7448D /* ExampleBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42EBA4256A803F00C7448D /* ExampleBottomSheetView.swift */; };
+		9BAA075E256A89CF003C7B08 /* TableViewExampleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA075D256A89CF003C7B08 /* TableViewExampleController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		9B42EB9A256A7FFE00C7448D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		9B42EB9E256A801A00C7448D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		9B42EBA4256A803F00C7448D /* ExampleBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleBottomSheetView.swift; sourceTree = "<group>"; };
+		9BAA075D256A89CF003C7B08 /* TableViewExampleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExampleController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				9B42EBA4256A803F00C7448D /* ExampleBottomSheetView.swift */,
+				9BAA075D256A89CF003C7B08 /* TableViewExampleController.swift */,
 			);
 			path = ExampleBottomSheet;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				9B42EB9F256A801A00C7448D /* ViewModel.swift in Sources */,
 				9B42EB9B256A7FFE00C7448D /* View.swift in Sources */,
 				9B42EB97256A7FD300C7448D /* ViewController.swift in Sources */,
+				9BAA075E256A89CF003C7B08 /* TableViewExampleController.swift in Sources */,
 				9B42EB75256A7DB400C7448D /* AppDelegate.swift in Sources */,
 				9B42EB77256A7DB400C7448D /* SceneDelegate.swift in Sources */,
 			);
