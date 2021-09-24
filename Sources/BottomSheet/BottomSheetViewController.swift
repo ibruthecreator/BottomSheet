@@ -2,7 +2,7 @@
 import UIKit
 
 /// An object to control `BottomSheetView` customization and behaviour.
-public final class BottomSheetViewController: UIViewController {
+public class BottomSheetViewController: UIViewController {
   
   /// The `BottomSheetView` containing user content.
   private let bottomSheetView: BottomSheetView = {
